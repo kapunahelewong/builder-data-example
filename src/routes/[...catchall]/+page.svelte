@@ -1,6 +1,6 @@
 <script>
 	import Counter from '../../lib/Counter.svelte';
-	import { isPreviewing, RenderContent, getAllContent } from '@builder.io/sdk-svelte';
+	import { isPreviewing, RenderContent } from '@builder.io/sdk-svelte';
 	import { BUILDER_PUBLIC_API_KEY } from '../../apiKey';
 
 	// Create an array of your custom components and their properties
@@ -25,7 +25,6 @@
 
 	// this data comes from the function in `+page.server.js`, which runs on the server only
 	export let data;
-	export let links;
 
 	// we want to show unpublished content when in preview mode.
 	const canShowContent = data.content || isPreviewing();
@@ -39,7 +38,7 @@
 	<h1>Welcome to SvelteKit</h1>
 
 	<div>Below is your Builder Content:</div>
-	{#each links as link}
+	{#each data.links as link}
 		<a href={link.data.url}>
 	  	{link.data.label}
 		</a>
